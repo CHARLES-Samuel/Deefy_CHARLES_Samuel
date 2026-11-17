@@ -29,6 +29,40 @@ class DefaultAction extends Action{
                         <div>
                             <h2 class="h3 mb-3">Vos Playlists &amp; Pistes</h2>
                             <p class="text-secondary mb-3">Retrouvez les morceaux de Slaughter to Prevail, Slipknot, System Of A Down, Falling In Reverse, Gojira, Lorna Shore et DaviD, ou importez directement vos propres pistes audio.</p>
+                            <div class="table-responsive mt-3">
+                                <p class="metal-label mb-2">Comptes de test :</p>
+                                <table class="table table-dark table-sm table-bordered border-secondary align-middle mb-0 track-meta">
+                                    <thead>
+                                        <tr>
+                                            <th>Email</th>
+                                            <th>Mot de passe</th>
+                                            <th>Rôle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>user1@mail.com</td>
+                                            <td>user1</td>
+                                            <td><span class="badge metal-badge">Standard</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>user2@mail.com</td>
+                                            <td>user2</td>
+                                            <td><span class="badge metal-badge">Standard</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>user3@mail.com</td>
+                                            <td>user3</td>
+                                            <td><span class="badge metal-badge">Standard</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>admin@mail.com</td>
+                                            <td>admin</td>
+                                            <td><span class="badge metal-badge">Admin</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-between border-top border-secondary pt-3 mt-3">
                             <div class="d-flex align-items-center gap-3">
