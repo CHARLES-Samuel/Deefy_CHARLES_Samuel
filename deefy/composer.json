@@ -1,0 +1,15 @@
+{
+    "name": "samuel/deefy",
+    "autoload": {
+        "psr-4": {
+            "iutnc\\deefy\\": "src/classes"
+        }
+    },
+    "authors": [
+        {
+            "name": "Charles Samuel",
+            "email": "charles.samuel.cha@gmail.com"
+        }
+    ],
+    "require": {}
+}
