@@ -1,7 +1,8 @@
 # Mini-Projet Deefy
 
 **Auteur :** CHARLES Samuel  
-**Ressource :** Développement Web S3 — BUT Informatique S3 (IUT Nancy-Charlemagne)
+**Ressource :** Développement Web S3 — BUT Informatique S3 (IUT Nancy-Charlemagne)  
+**Lien Webetu (application déployée) :** [https://webetu.iutnc.univ-lorraine.fr/~e39676u/Deefy_CHARLES_Samuel/deefy/](https://webetu.iutnc.univ-lorraine.fr/~e39676u/Deefy_CHARLES_Samuel/deefy/)
 
 ---
 
