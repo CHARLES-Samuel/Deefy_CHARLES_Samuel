@@ -9,13 +9,20 @@ class Signin extends Action{
 
     public function executeGET(): string {
         return <<<HTML
-            <form method="post" action="?action=signin">
-                <label for="mail">Entrez votre email&nbsp;: </label>
-                <input type="email" name="mail" id="mail" required />
-                <label for="pass">Entrez votre password&nbsp;: </label>
-                <input type="password" name="pass" id="pass" required />
-                <input type="submit" value="Connexion" />
-            </form>
+            <div class="metal-panel p-4 col-lg-5 mx-auto">
+                <h2 class="h4 mb-4">Connexion</h2>
+                <form method="post" action="?action=signin">
+                    <div class="mb-3">
+                        <label class="form-label metal-label" for="mail">Email</label>
+                        <input class="form-control metal-input" type="email" name="mail" id="mail" required />
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label metal-label" for="pass">Mot de passe</label>
+                        <input class="form-control metal-input" type="password" name="pass" id="pass" required />
+                    </div>
+                    <input class="btn btn-metal w-100" type="submit" value="Connexion" />
+                </form>
+            </div>
         HTML;
     }
 
@@ -24,7 +31,7 @@ class Signin extends Action{
         $pass = $_POST[ 'pass' ] ?? '';
 
         if (!$email) {
-            return "<p>Email invalide</p>";
+            return "<div class=\"alert metal-alert\">Email invalide</div>";
         }
 
         try {
@@ -32,13 +39,13 @@ class Signin extends Action{
 
             if($verifCredential){
                 $_SESSION['user'] = serialize($email);
-                return "<p>Authentification confirmée</p>";
+                return "<div class=\"alert metal-alert\">Authentification confirmée</div>";
             }
         } catch (AuthnException $e) {
-            return "<p>Identifiants invalides</p>";
+            return "<div class=\"alert metal-alert\">Identifiants invalides</div>";
         }
         
-        return "<p>Échec</p>";
+        return "<div class=\"alert metal-alert\">Échec</div>";
     }
     
 }

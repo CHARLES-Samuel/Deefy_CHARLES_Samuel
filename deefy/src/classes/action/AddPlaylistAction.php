@@ -14,15 +14,20 @@ class AddPlaylistAction extends Action{
         try {
             AuthnProvider::getSignedUser();
         } catch (AuthnException $e) {
-            return "<p>Vous devez être connecté</p>";
+            return "<div class=\"alert metal-alert\">Vous devez être connecté</div>";
         }
 
         return <<<HTML
-            <form method="post" action="?action=add-playlist">
-                <label for="playlist_name">Entrez le nom de la playlist&nbsp;: </label>
-                <input type="text" name="playlist_name" id="playlist_name" required />
-                <input type="submit" value="Add" />
-            </form>
+            <div class="metal-panel p-4 col-lg-6 mx-auto">
+                <h2 class="h4 mb-4">Créer une playlist</h2>
+                <form method="post" action="?action=add-playlist">
+                    <div class="mb-3">
+                        <label class="form-label metal-label" for="playlist_name">Nom de la playlist</label>
+                        <input class="form-control metal-input" type="text" name="playlist_name" id="playlist_name" required />
+                    </div>
+                    <input class="btn btn-metal" type="submit" value="Créer" />
+                </form>
+            </div>
         HTML;
     }
 
@@ -30,13 +35,13 @@ class AddPlaylistAction extends Action{
         try {
             $user = AuthnProvider::getSignedUser();
         } catch (AuthnException $e) {
-            return "<p>Vous devez être connecté</p>";
+            return "<div class=\"alert metal-alert\">Vous devez être connecté</div>";
         }
 
         $nomPlaylist = filter_var($_POST[ 'playlist_name' ] ?? '',
                                   FILTER_SANITIZE_SPECIAL_CHARS);
         if (trim($nomPlaylist) === '') {
-            return "<p>Nom de playlist invalide</p>";
+            return "<div class=\"alert metal-alert\">Nom de playlist invalide</div>";
         }
 
         $playlist = new Playlists($nomPlaylist);
@@ -51,9 +56,11 @@ class AddPlaylistAction extends Action{
         $res = $renderer->render();
 
         return <<<HTML
-            <div>
+            <div class="metal-panel p-4">
                 $res
-                <a href="?action=add-track">Ajouter une piste</a>
+                <div class="mt-4">
+                    <a class="btn btn-metal" href="?action=add-track">Ajouter une piste</a>
+                </div>
             </div>
         HTML;
     }

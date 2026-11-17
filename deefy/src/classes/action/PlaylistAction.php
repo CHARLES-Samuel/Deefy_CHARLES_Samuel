@@ -13,25 +13,25 @@ class PlaylistAction extends Action{
         try {
             AuthnProvider::getSignedUser();
         } catch (AuthnException $e) {
-            return "<p>Vous devez être connecté</p>";
+            return "<div class=\"alert metal-alert\">Vous devez être connecté</div>";
         }
 
         if(isset( $_SESSION[ 'playlist' ] )){
             $playlist = $_SESSION[ 'playlist' ];
             if ($playlist->id > 0 && !Authz::checkPlaylistOwner($playlist->id)) {
-                return "<p>Accès refusé</p>";
+                return "<div class=\"alert metal-alert\">Accès refusé</div>";
             }
 
             $renderer = new AudioListRenderer($playlist);
 
-            $res = "<div>";
+            $res = "<div class=\"metal-panel p-4\">";
             $res .= $renderer->render();
-            $res .= "<a href=\"?action=add-track\">Ajouter une piste</a>";
+            $res .= "<div class=\"mt-4\"><a class=\"btn btn-metal\" href=\"?action=add-track\">Ajouter une piste</a></div>";
             $res .= "</div>";
 
             return $res;
         } else {
-            return "<p>Aucune playlist</p>";
+            return "<div class=\"alert metal-alert\">Aucune playlist</div>";
         }
     }
 

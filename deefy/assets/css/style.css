@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Oswald:wght@400;600;700&family=Share+Tech+Mono&display=swap');
+
+:root {
+    --bg-abyss: #050506;
+    --bg-crypt: #0c0c0e;
+    --bg-iron: #141417;
+    --border-steel: #262426;
+    --blood-dark: #5c0606;
+    --blood-crimson: #8f0d0d;
+    --blood-bright: #b81414;
+    --bone-light: #dcd7ce;
+    --ash-muted: #7e7870;
+}
+
+body {
+    background-color: var(--bg-abyss);
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(110, 8, 8, 0.18) 0%, transparent 65%),
+        radial-gradient(circle at 50% 100%, rgba(0, 0, 0, 0.95) 0%, var(--bg-abyss) 100%),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.012) 0px, rgba(255, 255, 255, 0.012) 1px, transparent 1px, transparent 3px);
+    color: var(--bone-light);
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.04em;
+    min-height: 100vh;
+}
+
+h1, h2, h3, .metal-title {
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--bone-light);
+}
+
+.metal-header {
+    background: linear-gradient(180deg, #09090b 0%, #050506 100%);
+    border-bottom: 1px solid var(--border-steel);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.9);
+    position: relative;
+}
+
+.metal-header::after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blood-crimson), transparent);
+}
+
+.brand-skull {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 2.1rem;
+    letter-spacing: 0.22em;
+    color: var(--bone-light);
+    text-shadow: 0 0 18px rgba(143, 13, 13, 0.75), 0 2px 4px #000;
+    text-decoration: none;
+}
+
+.brand-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.28em;
+    color: var(--blood-bright);
+    text-transform: uppercase;
+}
+
+.metal-nav .nav-link {
+    color: var(--ash-muted);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.92rem;
+    padding: 0.55rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 0;
+    transition: all 0.2s ease;
+}
+
+.metal-nav .nav-link:hover,
+.metal-nav .nav-link:focus {
+    color: var(--bone-light);
+    background-color: rgba(143, 13, 13, 0.14);
+    border-color: var(--blood-crimson);
+    box-shadow: inset 0 0 12px rgba(143, 13, 13, 0.35);
+}
+
+.metal-panel {
+    background-color: var(--bg-crypt);
+    border: 1px solid var(--border-steel);
+    border-left: 3px solid var(--blood-crimson);
+    border-radius: 0;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85);
+}
+
+.metal-card {
+    background-color: var(--bg-iron);
+    border: 1px solid var(--border-steel);
+    border-radius: 0;
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.metal-card:hover {
+    border-color: var(--blood-crimson);
+    box-shadow: 0 0 20px rgba(143, 13, 13, 0.25);
+}
+
+.playlist-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    color: var(--bone-light);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 1.1rem;
+    background-color: var(--bg-iron);
+    border: 1px solid var(--border-steel);
+    border-left: 3px solid var(--blood-dark);
+    transition: all 0.18s ease;
+}
+
+.playlist-link:hover {
+    color: #fff;
+    background-color: #191112;
+    border-color: var(--blood-bright);
+    border-left-width: 6px;
+    padding-left: 1.5rem;
+}
+
+.metal-label {
+    font-family: 'Share Tech Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.85rem;
+    color: var(--ash-muted);
+}
+
+.metal-input {
+    background-color: #070708 !important;
+    border: 1px solid var(--border-steel) !important;
+    border-radius: 0 !important;
+    color: var(--bone-light) !important;
+    font-family: 'Share Tech Mono', monospace;
+    padding: 0.65rem 0.9rem;
+}
+
+.metal-input:focus {
+    border-color: var(--blood-bright) !important;
+    box-shadow: 0 0 0 0.2rem rgba(143, 13, 13, 0.28) !important;
+}
+
+.btn-metal {
+    background-color: var(--blood-dark);
+    color: var(--bone-light);
+    border: 1px solid var(--blood-bright);
+    border-radius: 0;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    padding: 0.6rem 1.5rem;
+    transition: all 0.2s ease;
+}
+
+.btn-metal:hover {
+    background-color: var(--blood-crimson);
+    color: #fff;
+    box-shadow: 0 0 18px rgba(184, 20, 20, 0.5);
+}
+
+.track-meta {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--ash-muted);
+    font-size: 0.88rem;
+}
+
+.track-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--bone-light);
+}
+
+.metal-badge {
+    background-color: #1a0909;
+    border: 1px solid var(--blood-crimson);
+    color: var(--bone-light);
+    font-family: 'Share Tech Mono', monospace;
+    border-radius: 0;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.metal-alert {
+    background-color: #160808;
+    border: 1px solid var(--blood-crimson);
+    border-left: 4px solid var(--blood-bright);
+    color: var(--bone-light);
+    border-radius: 0;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 0.06em;
+}
+
+audio {
+    width: 100%;
+    height: 36px;
+    filter: invert(92%) hue-rotate(175deg) brightness(85%) contrast(130%);
+    opacity: 0.88;
+}
+
+audio:hover {
+    opacity: 1;
+}
+

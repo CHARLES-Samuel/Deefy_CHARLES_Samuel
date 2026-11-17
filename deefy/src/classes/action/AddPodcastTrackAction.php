@@ -15,45 +15,53 @@ class AddPodcastTrackAction extends Action{
         try {
             AuthnProvider::getSignedUser();
         } catch (AuthnException $e) {
-            return "<p>Vous devez être connecté</p>";
+            return "<div class=\"alert metal-alert\">Vous devez être connecté</div>";
         }
 
         if(isset( $_SESSION[ 'playlist' ] )){
             $playlist = $_SESSION['playlist'];
             if ($playlist->id > 0 && !Authz::checkPlaylistOwner($playlist->id)) {
-                return "<p>Accès refusé</p>";
+                return "<div class=\"alert metal-alert\">Accès refusé</div>";
             }
 
             return <<<HTML
-                <form enctype="multipart/form-data" method="post" action="?action=add-track">
-                    <label for="track_name">Entrez le nom du podcast&nbsp;: </label>
-                    <input type="text" name="track_name" id="track_name" required />
-                    <input type="file" name="inputfile" required />
-                    <input type="submit" value="Add" />
-                </form>
+                <div class="metal-panel p-4 col-lg-6 mx-auto">
+                    <h2 class="h4 mb-4">Ajouter une piste</h2>
+                    <form enctype="multipart/form-data" method="post" action="?action=add-track">
+                        <div class="mb-3">
+                            <label class="form-label metal-label" for="track_name">Titre de la piste</label>
+                            <input class="form-control metal-input" type="text" name="track_name" id="track_name" required />
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label metal-label" for="inputfile">Fichier audio (.mp3)</label>
+                            <input class="form-control metal-input" type="file" name="inputfile" id="inputfile" required />
+                        </div>
+                        <input class="btn btn-metal" type="submit" value="Ajouter" />
+                    </form>
+                </div>
             HTML;
         }
-        return "<p>Ajout impossible</p>";
+        return "<div class=\"alert metal-alert\">Ajout impossible</div>";
     }
 
     public function executePOST():string{
         try {
             AuthnProvider::getSignedUser();
         } catch (AuthnException $e) {
-            return "<p>Vous devez être connecté</p>";
+            return "<div class=\"alert metal-alert\">Vous devez être connecté</div>";
         }
 
         if (!isset($_SESSION['playlist'])) {
-            return "<p>Ajout impossible</p>";
+            return "<div class=\"alert metal-alert\">Ajout impossible</div>";
         }
 
         $playlist = $_SESSION[ 'playlist' ];
         if ($playlist->id > 0 && !Authz::checkPlaylistOwner($playlist->id)) {
-            return "<p>Accès refusé</p>";
+            return "<div class=\"alert metal-alert\">Accès refusé</div>";
         }
 
         if (!isset($_FILES['inputfile']) || $_FILES['inputfile']['error'] !== UPLOAD_ERR_OK) {
-            return "<p>Erreur lors de l'envoi du fichier</p>";
+            return "<div class=\"alert metal-alert\">Erreur lors de l'envoi du fichier</div>";
         }
 
         $upload_dir = __DIR__ . "/../../../assets/audio/";
@@ -68,10 +76,10 @@ class AddPodcastTrackAction extends Action{
                 ($_FILES['inputfile']['type'] === 'audio/mpeg') ) {
             $dest = $upload_dir.$filename.'.mp3';
             if (!move_uploaded_file($tmp, $dest )) {
-                return "<p>hum, hum téléchargement non valide</p>";
+                return "<div class=\"alert metal-alert\">Téléchargement non valide</div>";
             }
         } else {
-            return "<p>echec du téléchargement ou type non autorisé</p>";
+            return "<div class=\"alert metal-alert\">Échec du téléchargement ou type non autorisé</div>";
         }
         
         $podcast = new PodcastTrack($track_name,'assets/audio/' . $filename . '.mp3');
@@ -85,10 +93,12 @@ class AddPodcastTrackAction extends Action{
         $renderer = new AudioListRenderer($playlist);
         $res = $renderer->render();
         return <<<HTML
-            <div>
-                <p>téléchargement terminé avec succès</p>
+            <div class="metal-panel p-4">
+                <div class="alert metal-alert mb-4">Téléchargement terminé avec succès</div>
                 $res
-                <a href="?action=add-track">Ajouter encore une piste</a>
+                <div class="mt-4">
+                    <a class="btn btn-metal" href="?action=add-track">Ajouter encore une piste</a>
+                </div>
             </div>
         HTML;
     }

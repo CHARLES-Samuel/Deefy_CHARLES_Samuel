@@ -11,30 +11,30 @@ class DisplayPlaylistAction extends Action {
 
     public function executeGET(): string{
         if (!isset($_GET['id'])) {
-            return "<p>Id de playlist manquant</p>";
+            return "<div class=\"alert metal-alert\">Id de playlist manquant</div>";
         }
         $id = (int)$_GET['id'];
 
         try {
             if (!Authz::checkPlaylistOwner($id)) {
-                return "<p>Accès refusé</p>";
+                return "<div class=\"alert metal-alert\">Accès refusé</div>";
             }
         } catch (AuthnException $e) {
-            return "<p>Vous devez être connecté</p>";
+            return "<div class=\"alert metal-alert\">Vous devez être connecté</div>";
         }
         
         $playlist = DeefyRepository::getInstance()->findPlaylistById($id);
         if ($playlist === null) {
-            return "<p>Playlist introuvable</p>";
+            return "<div class=\"alert metal-alert\">Playlist introuvable</div>";
         }
 
         $_SESSION['playlist'] = $playlist;
 
         $renderer = new AudioListRenderer($playlist);
 
-        $res = "<div>";
+        $res = "<div class=\"metal-panel p-4\">";
         $res .= $renderer->render();
-        $res .= "<a href=\"?action=add-track\">Ajouter une piste</a>";
+        $res .= "<div class=\"mt-4\"><a class=\"btn btn-metal\" href=\"?action=add-track\">Ajouter une piste</a></div>";
         $res .= "</div>";
 
         return $res;

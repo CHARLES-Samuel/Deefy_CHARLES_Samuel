@@ -13,7 +13,7 @@ class MesPlaylistsAction extends Action {
         try {
             $user = AuthnProvider::getSignedUser();
         } catch (AuthnException $e) {
-            return "<p>Vous devez être connecté</p>";
+            return "<div class=\"alert metal-alert\">Vous devez être connecté</div>";
         }
 
         $repo = DeefyRepository::getInstance();
@@ -24,15 +24,17 @@ class MesPlaylistsAction extends Action {
         }
 
         if (empty($playlists)) {
-            return "<p>Aucune playlist enregistrée</p>";
+            return "<div class=\"alert metal-alert\">Aucune playlist enregistrée</div>";
         }
 
-        $res = "<ul>";
+        $res = "<div class=\"metal-panel p-4\">";
+        $res .= "<h2 class=\"h4 mb-4\">Mes Playlists</h2>";
+        $res .= "<div class=\"d-flex flex-column gap-2\">";
         foreach ($playlists as $pl) {
             $nom = htmlspecialchars($pl->nom_liste, ENT_QUOTES, 'UTF-8', false);
-            $res .= "<li><a href=\"?action=display-playlist&amp;id=" . $pl->id . "\">$nom</a></li>";
+            $res .= "<a class=\"playlist-link\" href=\"?action=display-playlist&amp;id=" . $pl->id . "\"><span>$nom</span><span class=\"badge metal-badge\">#" . $pl->id . "</span></a>";
         }
-        $res .= "</ul>";
+        $res .= "</div></div>";
 
         return $res;
     }
