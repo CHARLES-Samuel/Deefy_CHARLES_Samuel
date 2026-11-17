@@ -10,6 +10,7 @@ use iutnc\deefy\action\DisplayPlaylistAction;
 use iutnc\deefy\action\MesPlaylistsAction;
 use iutnc\deefy\action\PlaylistAction;
 use iutnc\deefy\action\Signin;
+use iutnc\deefy\action\Signout;
 
 class Dispatcher{
 
@@ -38,6 +39,9 @@ class Dispatcher{
                 break;
             case "signin":
                 $this->renderPage((new Signin())());
+                break;
+            case "signout":
+                $this->renderPage((new Signout())());
                 break;
             case "display-playlist":
                 $this->renderPage((new DisplayPlaylistAction)());
@@ -75,13 +79,14 @@ class Dispatcher{
                             <a href="?action=default" class="brand-skull d-block">DEEFY</a>
                         </div>
                         <nav>
-                            <ul class="nav metal-nav flex-wrap gap-1">
+                            <ul class="nav metal-nav flex-wrap align-items-center gap-1">
                                 <li class="nav-item"><a class="nav-link" href="?action=default">Accueil</a></li>
                                 <li class="nav-item"><a class="nav-link" href="?action=mes-playlists">Mes playlists</a></li>
                                 <li class="nav-item"><a class="nav-link" href="?action=playlist">Playlist courante</a></li>
                                 <li class="nav-item"><a class="nav-link" href="?action=add-playlist">Créer une playlist</a></li>
                                 <li class="nav-item"><a class="nav-link" href="?action=signin">Connexion</a></li>
                                 <li class="nav-item"><a class="nav-link" href="?action=add-user">Inscription</a></li>
+                                <li class="nav-item"><a class="btn btn-metal btn-sm ms-md-2" href="?action=signout">Déconnexion</a></li>
                             </ul>
                         </nav>
                     </div>
