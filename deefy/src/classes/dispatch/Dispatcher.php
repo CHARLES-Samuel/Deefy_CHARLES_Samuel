@@ -57,6 +57,15 @@ class Dispatcher{
     }
 
     public function renderPage(string $html) : void{
+        if (isset($_SESSION['user'])) {
+            $authLinks = '<li class="nav-item"><a class="btn btn-metal btn-sm ms-md-2" href="?action=signout">Déconnexion</a></li>';
+        } else {
+            $authLinks = <<<HTML
+                <li class="nav-item"><a class="nav-link" href="?action=signin">Connexion</a></li>
+                <li class="nav-item"><a class="nav-link" href="?action=add-user">Inscription</a></li>
+            HTML;
+        }
+
         echo <<<HTML
         <!DOCTYPE html>
         <html lang="fr" data-bs-theme="dark">
@@ -84,9 +93,7 @@ class Dispatcher{
                                 <li class="nav-item"><a class="nav-link" href="?action=mes-playlists">Mes playlists</a></li>
                                 <li class="nav-item"><a class="nav-link" href="?action=playlist">Playlist courante</a></li>
                                 <li class="nav-item"><a class="nav-link" href="?action=add-playlist">Créer une playlist</a></li>
-                                <li class="nav-item"><a class="nav-link" href="?action=signin">Connexion</a></li>
-                                <li class="nav-item"><a class="nav-link" href="?action=add-user">Inscription</a></li>
-                                <li class="nav-item"><a class="btn btn-metal btn-sm ms-md-2" href="?action=signout">Déconnexion</a></li>
+                                $authLinks
                             </ul>
                         </nav>
                     </div>

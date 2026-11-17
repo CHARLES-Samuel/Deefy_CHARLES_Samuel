@@ -7,6 +7,14 @@ use iutnc\deefy\action\Action;
 class DefaultAction extends Action{
 
     public function executeGET(): string{
+        if (isset($_SESSION['user'])) {
+            $authBtn = '<a href="?action=signout" class="btn btn-outline-secondary rounded-0 text-uppercase">Déconnexion</a>';
+            $bottomAuth = '<a href="?action=signout" class="btn btn-metal btn-sm">Déconnexion</a>';
+        } else {
+            $authBtn = '<a href="?action=signin" class="btn btn-outline-secondary rounded-0 text-uppercase">S\'authentifier</a>';
+            $bottomAuth = '<a href="?action=add-user" class="btn btn-metal btn-sm">Inscription</a>';
+        }
+
         return <<<HTML
             <div class="hero-banner p-4 p-md-5 mb-4">
                 <div class="col-lg-7">
@@ -15,7 +23,7 @@ class DefaultAction extends Action{
                     <div class="d-flex flex-wrap gap-3">
                         <a href="?action=mes-playlists" class="btn btn-metal">Mes playlists</a>
                         <a href="?action=add-playlist" class="btn btn-outline-light rounded-0 text-uppercase">Créer une playlist</a>
-                        <a href="?action=signin" class="btn btn-outline-secondary rounded-0 text-uppercase">S'authentifier</a>
+                        $authBtn
                     </div>
                 </div>
             </div>
@@ -69,7 +77,7 @@ class DefaultAction extends Action{
                                 <img src="assets/img/mask-emblem.jpg" alt="Deefy Emblem" class="brand-emblem">
                                 <span class="track-meta">Créez un compte ou connectez-vous pour gérer vos playlists</span>
                             </div>
-                            <a href="?action=add-user" class="btn btn-metal btn-sm">Inscription</a>
+                            $bottomAuth
                         </div>
                     </div>
                 </div>
