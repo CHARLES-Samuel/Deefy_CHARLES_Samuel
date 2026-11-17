@@ -59,15 +59,19 @@ class Dispatcher{
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>DEEFY // ABYSS AUDIO</title>
+            <title>DEEFY</title>
+            <link rel="icon" href="assets/img/mask-emblem.jpg" type="image/jpeg">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
             <link href="assets/css/style.css" rel="stylesheet">
         </head>
         <body>
-            <header class="metal-header py-4 mb-5">
+            <header class="metal-header py-3 mb-5">
                 <div class="container">
                     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
-                        <div>
+                        <div class="d-flex align-items-center gap-3">
+                            <a href="?action=default">
+                                <img src="assets/img/mask-emblem.jpg" alt="Deefy Logo" class="brand-emblem">
+                            </a>
                             <a href="?action=default" class="brand-skull d-block">DEEFY</a>
                         </div>
                         <nav>
