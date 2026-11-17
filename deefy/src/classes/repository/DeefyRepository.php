@@ -49,6 +49,20 @@ class DeefyRepository{
         return $playlists;
     }
 
+    public function getUserPlaylists(string $email) : array {
+        $query = "SELECT playlist.id, playlist.nom_liste FROM playlist INNER JOIN user2playlist ON user2playlist.id_pl = playlist.id INNER JOIN User ON User.id = user2playlist.id_user WHERE User.email = :mail";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute(['mail' => $email]);
+
+        $playlists = [];
+        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $pl = new Playlists($row['nom_liste']);
+            $pl->setID((int)$row['id']);
+            $playlists[] = $pl;
+        }
+        return $playlists;
+    }
+
     public function saveEmptyPlaylist(Playlists $playlist) : Playlists {
         $query = "INSERT INTO playlist (nom_liste) VALUES (:nom_liste)";
         $stmt = $this->pdo->prepare($query);

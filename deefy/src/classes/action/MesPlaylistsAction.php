@@ -3,6 +3,7 @@
 namespace iutnc\deefy\action;
 
 use iutnc\deefy\auth\AuthnProvider;
+use iutnc\deefy\auth\Authz;
 use iutnc\deefy\exception\AuthnException;
 use iutnc\deefy\repository\DeefyRepository;
 
@@ -10,12 +11,18 @@ class MesPlaylistsAction extends Action {
 
     public function executeGET(): string {
         try {
-            AuthnProvider::getSignedUser();
+            $user = AuthnProvider::getSignedUser();
         } catch (AuthnException $e) {
             return "<p>Vous devez être connecté</p>";
         }
 
-        $playlists = DeefyRepository::getInstance()->getListOfPlaylist();
+        $repo = DeefyRepository::getInstance();
+        if (Authz::checkRole(100)) {
+            $playlists = $repo->getListOfPlaylist();
+        } else {
+            $playlists = $repo->getUserPlaylists($user);
+        }
+
         if (empty($playlists)) {
             return "<p>Aucune playlist enregistrée</p>";
         }
